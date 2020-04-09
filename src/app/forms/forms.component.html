@@ -1,0 +1,30 @@
+<h3>Reactive Form Validation</h3>
+<div class="col-xl-6">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label class="label">First Name</label>
+    <input class="input" type="text" formControlName="firstname" />
+    <div *ngIf="firstname.invalid && !firstname.pristine">
+      <p *ngIf="firstname.invalid && firstname.pristine" class="text-danger">First Name is required.</p>
+      <p *ngIf="firstname.errors.minlength" class="text-danger">First name should be atleast 3 characters</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input class="input" type="text" formControlName="email" />
+    <div *ngIf="email.invalid && !email.pristine">
+      <p *ngIf="email.errors.email" class="text-danger">Valid email is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input class="input" type="password" formControlName="password" />
+    <div *ngIf="password.invalid && !password.pristine">
+      <p *ngIf="password.errors.minlength" class="text-danger">Password should be atleast 3 characters.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+  </div>
+</form>
+</div>
